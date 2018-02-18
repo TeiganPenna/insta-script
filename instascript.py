@@ -1,12 +1,23 @@
 import InstagramAPI
+import logging
+import json
+
+logging.basicConfig(filename='instascript.log', level=logging.DEBUG)
 
 USERNAME = ''
 PASSWORD = ''
+with open("settings.json") as f:
+	settings = json.load(f)
+	USERNAME = settings['username']
+	PASSWORD = settings['password']
+
+logging.info("the username is [{0}]. the password is [{1}].".format(USERNAME, PASSWORD))
 
 BLACKLIST = []
 with open('blacklist.txt') as f:
 	for line in f:
 		BLACKLIST.append(line.strip())
+logging.info("number of blacklisted friends: [{0}]".format(str(len(BLACKLIST))))
 
 client = InstagramAPI.InstagramAPI(USERNAME, PASSWORD)
 if client.login():
