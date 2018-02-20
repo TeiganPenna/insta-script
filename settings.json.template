@@ -1,5 +1,5 @@
 {
-  "README": "Copy this file to settings.json and replace with your bot and user tokens",
+  "README": "Copy this file to settings.json and replace with your username and password",
   "username": "username",
   "password": "password"
 }
