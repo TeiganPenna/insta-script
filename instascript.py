@@ -34,16 +34,15 @@ if client.login():
 		to_remove.append(following)
 
 	unfollowed = 0
-	failed = 0
 	for person in to_remove:
 		if client.unfollow(person['pk']):
+			print("Unfollowed: " + person['username'])
 			unfollowed += 1
 		else:
-			logging.info("failed to unfollow [{0}]".format(person['username']))
-			failed += 1			
+			print("==================================")
+			print("Failed. " + str(len(to_remove) - unfollowed) + "remaining")
+			break	
 	print("Unfollowed: " + str(unfollowed))
-	if failed > 0:
-		print("Failed: " + str(failed))
 
 	client.logout()
 
