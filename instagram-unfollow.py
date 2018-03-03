@@ -45,7 +45,7 @@ while failed:
 			unfollowed += 1
 		else:
 			print("==================================")
-			print("Failed. " + str(len(to_remove) - unfollowed) + "remaining")
+			print("Failed. " + str(len(to_remove) - unfollowed) + " remaining")
 			failed = True
 			break	
 	print("Unfollowed: " + str(unfollowed))

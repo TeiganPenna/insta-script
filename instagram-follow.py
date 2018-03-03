@@ -38,7 +38,7 @@ while failed:
 				followed += 1
 			else:
 				print("==================================")
-				print("Failed. " + str(len(to_follow) - followed) + "remaining")
+				print("Failed. " + str(len(to_follow) - followed) + " remaining")
 				failed = True
 				break	
 		print("Followed: " + str(followed))
