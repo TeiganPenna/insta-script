@@ -26,7 +26,7 @@ while failed:
 
 		to_follow = []
 		for follower in followers:
-			if follower['pk'] in followings_pks:
+			if follower['is_private'] or follower['pk'] in followings_pks:
 				continue
 			to_follow.append(follower)
 
