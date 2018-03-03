@@ -13,4 +13,10 @@ unfollows anyone who isn't following you that also isn't on the blacklist.
 
 
 
+### instagram-like.py
+
+likes all posts from the last three days from all followers.
+
+
+
 requires InstagramAPI
