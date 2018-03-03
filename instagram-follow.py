@@ -19,35 +19,39 @@ while failed:
 
 	failed = False
 	client = InstagramAPI.InstagramAPI(USERNAME, PASSWORD)
-	if client.login():
-		followers = client.getTotalFollowers(client.username_id)
-		followings = client.getTotalFollowings(client.username_id)
-		followings_pks = [f['pk'] for f in followings]
+	try:
+		if client.login():
+			followers = client.getTotalSelfFollowers()
+			followings = client.getTotalSelfFollowings()
+			followings_pks = [f['pk'] for f in followings]
 
-		to_follow = []
-		for follower in followers:
-			if follower['is_private'] or follower['pk'] in followings_pks:
-				continue
-			to_follow.append(follower)
+			to_follow = []
+			for follower in followers:
+				if follower['is_private'] or follower['pk'] in followings_pks:
+					continue
+				to_follow.append(follower)
 
-		followed = 0
-		
-		for person in to_follow:
-			if client.follow(person['pk']):
-				print("Followed: " + person['username'])
-				followed += 1
-			else:
-				print("==================================")
-				print("Failed. " + str(len(to_follow) - followed) + " remaining")
-				failed = True
-				break	
-		print("Followed: " + str(followed))
+			followed = 0
+			
+			for person in to_follow:
+				if client.follow(person['pk']):
+					print("Followed: " + person['username'])
+					followed += 1
+				else:
+					print("==================================")
+					print("Failed. " + str(len(to_follow) - followed) + " remaining")
+					failed = True
+					break	
+			print("Followed: " + str(followed))
 
+			client.logout()
+
+			if failed:
+				print('RETRYING...')
+				time.sleep(5)
+	finally:
 		client.logout()
-
-		if failed:
-			print('RETRYING...')
-			time.sleep(5)
+		failed = False
 
 print("DONE. Press 'ENTER' to continue...")
 input()
