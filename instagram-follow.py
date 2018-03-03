@@ -23,9 +23,10 @@ if client.login():
 	for follower in followers:
 		if follower['pk'] in followings_pks:
 			continue
-		to_follow.append(following)
+		to_follow.append(follower)
 
 	followed = 0
+	
 	for person in to_follow:
 		if client.follow(person['pk']):
 			print("Followed: " + person['username'])
@@ -34,7 +35,7 @@ if client.login():
 			print("==================================")
 			print("Failed. " + str(len(to_follow) - followed) + "remaining")
 			break	
-	print("Followed: " + str(unfollowed))
+	print("Followed: " + str(followed))
 
 	client.logout()
 

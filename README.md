@@ -3,7 +3,7 @@ short scripts for instagram
 
 ### instagram-follow.py
 
-follows everyone how is following you.
+follows everyone who is following you.
 
 
 
